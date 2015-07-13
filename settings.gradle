@@ -1,2 +1,1 @@
-include ':app'
-include ':app', '..:dhis2-android-sdk:app'
+include ':app', ':SA-DHIS-SDK'
