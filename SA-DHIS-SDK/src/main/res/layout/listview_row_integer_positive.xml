@@ -43,6 +43,8 @@
         style="@style/ListViewEditTextStyle"
         android:hint="@string/enter_integer"
         android:imeOptions="actionNext|flagNoExtractUi"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@drawable/black_cursor"
         android:inputType="number"
         app:font="@string/regular_font_name" />
 

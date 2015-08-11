@@ -59,6 +59,8 @@
             android:paddingTop="11dp"
             android:textColor="@color/black"
             android:textSize="@dimen/medium_text_size"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@drawable/black_cursor"
             app:font="@string/light_font_name"/>
     </LinearLayout>
 

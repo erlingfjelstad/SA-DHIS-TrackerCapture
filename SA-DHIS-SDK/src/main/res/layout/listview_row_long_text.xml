@@ -41,6 +41,8 @@
     <org.hisp.dhis.android.sdk.utils.ui.views.FontEditText
         android:id="@+id/edit_long_text_row"
         style="@style/ListViewEditTextStyle"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@drawable/black_cursor"
         android:hint="@string/enter_text"
         android:imeOptions="actionNext|flagNoExtractUi"
         android:inputType="text"

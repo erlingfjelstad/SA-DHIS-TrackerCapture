@@ -44,6 +44,8 @@
         android:hint="@string/enter_integer"
         android:imeOptions="actionNext|flagNoExtractUi"
         android:inputType="number|numberSigned"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@drawable/black_cursor"
         app:font="@string/regular_font_name"/>
     
 </LinearLayout>
