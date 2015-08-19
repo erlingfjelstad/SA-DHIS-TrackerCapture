@@ -552,15 +552,16 @@ public final class Dhis2 {
 
     }
 
+    @SuppressWarnings("Disabled for maintenance")
     public static void dataIntegrityCheck(Context context)
     {
-        getInstance().context = context;
-        new Thread() {
-            public void run() {
-                getInstance().getMetaDataController().metaDataIntegrityCheck();
-                getInstance().getDataValueController().dataValueIntegrityCheck();
-            }
-        }.start();
+//        getInstance().context = context;
+//        new Thread() {
+//            public void run() {
+//                getInstance().getMetaDataController().metaDataIntegrityCheck();
+//                getInstance().getDataValueController().dataValueIntegrityCheck();
+//            }
+//        }.start();
 
     }
 
