@@ -60,7 +60,7 @@ import org.hisp.dhis.android.sdk.utils.APIException;
 /**
  *
  */
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends Activity implements OnClickListener, AdapterView.OnItemSelectedListener {
     /**
      *                  Also implement  AdapterView.OnItemSelectedListener
      */
@@ -137,7 +137,7 @@ public class LoginActivity extends Activity implements OnClickListener {
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         serverSpinner.setAdapter(adapter);
-        serverSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        serverSpinner.setOnItemSelectedListener( this);
     }
 
     @Override
@@ -247,7 +247,7 @@ public class LoginActivity extends Activity implements OnClickListener {
         super.onBackPressed();
     }
 
-        /*--
+
     //----------------implementation of itemlistener for serverurl selection
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         // An item was selected. You can retrieve the selected item using
@@ -272,6 +272,6 @@ public class LoginActivity extends Activity implements OnClickListener {
         // Another interface callback
     }
 
-        */
+
 
 }
