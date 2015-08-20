@@ -201,4 +201,11 @@
     <string name="last_updated">Last updated</string>
     <string name="failed_item">Failed item</string>
 
+
+    <!-- String array for server instance url -->
+    <string-array name="url_array">
+    <item>http://ishp.dhis.dhmis.org/training</item>
+    <item>http://ishp.dhis.dhmis.org/staging</item>
+    <item>http://ishp.dhis.dhmis.org</item>
+    </string-array>
 </resources>

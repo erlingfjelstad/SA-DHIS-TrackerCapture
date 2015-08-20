@@ -39,9 +39,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 
 import com.squareup.otto.Subscribe;
 
@@ -59,18 +62,20 @@ import org.hisp.dhis.android.sdk.utils.APIException;
  */
 public class LoginActivity extends Activity implements OnClickListener {
     /**
-     *
+     *                  Also implement  AdapterView.OnItemSelectedListener
      */
     private final static String CLASS_TAG = "LoginActivity";
 
     private EditText usernameEditText;
     private EditText passwordEditText;
-    private EditText serverEditText;
+    private Spinner serverSpinner;
     private Button loginButton;
     private ProgressBar progressBar;
     private View viewsContainer;
 
     private AppPreferences mPrefs;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,15 +105,16 @@ public class LoginActivity extends Activity implements OnClickListener {
         viewsContainer = findViewById(R.id.login_views_container);
         usernameEditText = (EditText) findViewById(R.id.username);
         passwordEditText = (EditText) findViewById(R.id.password);
-        serverEditText = (EditText) findViewById(R.id.server_url);
+        serverSpinner = (Spinner) findViewById(R.id.server_url);
         loginButton = (Button) findViewById(R.id.login_button);
 
         String server = mPrefs.getServerUrl();
         String username = mPrefs.getUsername();
         String password = "";
 
-        if (server == null) {
+       if (server == null) {
             server = "https://";
+
         }
 
         if (username == null) {
@@ -116,20 +122,29 @@ public class LoginActivity extends Activity implements OnClickListener {
             password = "";
         }
 
-        serverEditText.setText(server);
+       // serverSpinner.set(server);
         usernameEditText.setText(username);
         passwordEditText.setText(password);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
         loginButton.setOnClickListener(this);
+
+        //----code to populate the spinner with url options------------------
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.url_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        serverSpinner.setAdapter(adapter);
+        serverSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
     }
 
     @Override
     public void onClick(View v) {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        String serverURL = serverEditText.getText().toString();
+        String serverURL = serverSpinner.getSelectedItem().toString();
 
         //remove whitespace as last character for username
         if (username.charAt(username.length() - 1) == ' ') {
@@ -214,7 +229,7 @@ public class LoginActivity extends Activity implements OnClickListener {
     }
 
     private void handleUser() {
-        mPrefs.putServerUrl(serverEditText.getText().toString());
+        mPrefs.putServerUrl(serverSpinner.getSelectedItem().toString());
         mPrefs.putUserName(usernameEditText.getText().toString());
         launchMainActivity();
     }
@@ -231,4 +246,32 @@ public class LoginActivity extends Activity implements OnClickListener {
         System.exit(0);
         super.onBackPressed();
     }
+
+        /*--
+    //----------------implementation of itemlistener for serverurl selection
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        parent.getItemAtPosition(pos);
+        switch(pos){
+
+            case 0:
+                // Whatever you want to happen when the first item gets selected
+                break;
+            case 1:
+                // Whatever you want to happen when the second item gets selected
+                break;
+            case 2:
+                // Whatever you want to happen when the thrid item gets selected
+                break;
+
+
+        }
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+        */
+
 }
