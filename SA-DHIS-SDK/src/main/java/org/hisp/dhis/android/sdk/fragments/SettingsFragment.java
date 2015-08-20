@@ -96,6 +96,7 @@ public class SettingsFragment extends Fragment
 
         synchronizeButton = (Button) view.findViewById(R.id.settings_sync_button);
         logoutButton = (Button) view.findViewById(R.id.settings_logout_button);
+        logoutButton.setClickable(false);
         mProgessBar = (ProgressBar) view.findViewById(R.id.settings_progessbar);
         syncTextView = (TextView) view.findViewById(R.id.settings_sync_textview);
         mProgessBar.setVisibility(View.GONE);
