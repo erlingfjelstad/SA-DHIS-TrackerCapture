@@ -45,6 +45,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
@@ -130,12 +131,14 @@ public class LoginActivity extends Activity implements OnClickListener, AdapterV
         progressBar.setVisibility(View.GONE);
         loginButton.setOnClickListener(this);
 
-        //----code to populate the spinner with url options------------------
+
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.url_array, android.R.layout.simple_spinner_item);
+      ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.url_array, android.R.layout.simple_spinner_item);
+
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         serverSpinner.setAdapter(adapter);
         serverSpinner.setOnItemSelectedListener( this);
     }
@@ -144,6 +147,13 @@ public class LoginActivity extends Activity implements OnClickListener, AdapterV
     public void onClick(View v) {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+        // If default spinner option is selected then user should be warned
+        if(serverSpinner.getSelectedItemPosition()==0) {
+            Toast.makeText(LoginActivity.this,
+                    "       ERROR      " +
+                            "\nPlease Select a Server URL", Toast.LENGTH_LONG).show();
+            return;
+        }
         String serverURL = serverSpinner.getSelectedItem().toString();
 
         //remove whitespace as last character for username
@@ -248,28 +258,17 @@ public class LoginActivity extends Activity implements OnClickListener, AdapterV
     }
 
 
-    //----------------implementation of itemlistener for serverurl selection
+
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        parent.getItemAtPosition(pos);
-        switch(pos){
 
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
+        Log.e( CLASS_TAG, "Server URL selected is: " + (String)parent.getItemAtPosition(pos));
 
 
-        }
     }
 
+    @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
+
     }
 
 

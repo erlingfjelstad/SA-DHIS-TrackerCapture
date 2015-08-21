@@ -201,11 +201,16 @@
     <string name="last_updated">Last updated</string>
     <string name="failed_item">Failed item</string>
 
+    <!--Default String in Server URL spinner -->
+    <string name="serverurl_prompt">Select a Server URL</string>
+
 
     <!-- String array for server instance url -->
     <string-array name="url_array">
+    <item>\t\t\t[Select a Server URL]</item>
     <item>http://ishp.dhis.dhmis.org/training</item>
     <item>http://ishp.dhis.dhmis.org/staging</item>
     <item>http://ishp.dhis.dhmis.org</item>
     </string-array>
+
 </resources>
